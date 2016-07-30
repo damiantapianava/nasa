@@ -11,11 +11,44 @@ android {
         versionCode 1
         versionName "1.0"
     }
+
+    signingConfigs {
+        debug.initWith(signingConfigs.debug)
+        release {
+/*
+            storeFile("release.keystore")
+            storePassword ""
+            keyAlias "key-alias-para-google-play"
+            keyPassword "key-password-para-google-play"
+*/
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            //buildConfigField 'String', 'BUILD_TYPE', 'release'
+            buildConfigField "String", "URL", "\"https://api.nasa.gov/\""
+            //signingConfig signingConfigs.release
         }
+
+        debug {
+            minifyEnabled true
+//            buildConfigField 'String', 'BUILD_TYPE', 'debug'
+            buildConfigField "String", "URL", "\"https://api.nasa.gov/\""
+        }
+    }
+
+    productFlavors {
+        free {
+            applicationId "nasa.unam.mx.nasa.free"
+        }
+/*
+        paid {
+            applicationId "nasa.unam.mx.nasa.paid"
+        }
+*/
     }
 }
 
@@ -24,4 +57,12 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
+/*
+    compile project (":a-nivel-de-app-library")
+    freeCompile 'otra-libreria-solo-para-flavor-free'
+    paidCompile 'otra-libreria-solo-para-flavor-paid'
+*/
+    compile 'com.squareup.retrofit2:retrofit:2.1.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.0.2'
+    compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
 }

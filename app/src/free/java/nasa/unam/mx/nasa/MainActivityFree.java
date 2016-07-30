@@ -15,10 +15,11 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivityFree extends AppCompatActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -33,11 +34,49 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        StringBuilder sb = new StringBuilder();
+        StringBuilder sb;
+        sb = new StringBuilder();
         sb.append("FLAVOR: ").append(BuildConfig.FLAVOR).append(" ");
         sb.append("URL: ").append(BuildConfig.URL);
+
         Toast.makeText(getApplicationContext(), sb.toString(), Toast.LENGTH_SHORT).show();
-        Log.d("MainActivity: ", sb.toString());
+        Log.d("MainActivityFree: ", sb.toString());
+
+        ApodServiceIMO service;
+        service = Data.getInstance().create(ApodServiceIMO.class);
+
+        Call<Apod> request;
+        request = service.getTodayApod();
+
+        request.enqueue(new Callback<Apod>()
+        {
+            @Override
+            public void onResponse(Call<Apod> call, Response<Apod> response)
+            {
+                Log.d("NASA", response.body().getExplanation());
+            }
+
+            @Override
+            public void onFailure(Call<Apod> call, Throwable t) {
+
+            }
+        });
+
+        request = service.getTodayApodWithQuery("TlWYgKkzBKK2KmrIeFzKyS83hRml1pWhCmG7oqRH");
+
+        request.enqueue(new Callback<Apod>()
+        {
+            @Override
+            public void onResponse(Call<Apod> call, Response<Apod> response)
+            {
+                Log.d("NASA", response.body().getExplanation());
+            }
+
+            @Override
+            public void onFailure(Call<Apod> call, Throwable t) {
+
+            }
+        });
     }
 
     @Override
