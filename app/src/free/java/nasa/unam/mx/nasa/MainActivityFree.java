@@ -9,32 +9,39 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import com.squareup.picasso.Picasso;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivityFree extends AppCompatActivity {
+public class MainActivityFree extends AppCompatActivity
+{
+    private ImageView image_view;
+    private TextView txt_title;
+    private TextView txt_date;
+    private TextView txt_explanation;
+
+    private ApodServiceIMO service;
+    private Call<Apod> request;
+
+    private StringBuilder sb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
 
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+        image_view = (ImageView) findViewById(R.id.iv_app_ic);
+        txt_date = (TextView) findViewById(R.id.txt_date);
+        txt_title = (TextView) findViewById(R.id.txt_title);
+        txt_explanation = (TextView) findViewById(R.id.txt_explanation);
 
-        StringBuilder sb;
         sb = new StringBuilder();
         sb.append("FLAVOR: ").append(BuildConfig.FLAVOR).append(" ");
         sb.append("URL: ").append(BuildConfig.URL);
@@ -42,34 +49,23 @@ public class MainActivityFree extends AppCompatActivity {
         Toast.makeText(getApplicationContext(), sb.toString(), Toast.LENGTH_SHORT).show();
         Log.d("MainActivityFree: ", sb.toString());
 
-        ApodServiceIMO service;
         service = Data.getInstance().create(ApodServiceIMO.class);
 
-        Call<Apod> request;
         request = service.getTodayApod();
+        //request = service.getTodayApodWithQuery("TlWYgKkzBKK2KmrIeFzKyS83hRml1pWhCmG7oqRH");
 
         request.enqueue(new Callback<Apod>()
         {
             @Override
             public void onResponse(Call<Apod> call, Response<Apod> response)
             {
-                Log.d("NASA", response.body().getExplanation());
-            }
+                txt_date.setText(response.body().getDate());
+                txt_title.setText(response.body().getTitle());
+                txt_explanation.setText(response.body().getExplanation());
 
-            @Override
-            public void onFailure(Call<Apod> call, Throwable t) {
+                String url = response.body().getUrl();
 
-            }
-        });
-
-        request = service.getTodayApodWithQuery("TlWYgKkzBKK2KmrIeFzKyS83hRml1pWhCmG7oqRH");
-
-        request.enqueue(new Callback<Apod>()
-        {
-            @Override
-            public void onResponse(Call<Apod> call, Response<Apod> response)
-            {
-                Log.d("NASA", response.body().getExplanation());
+                Picasso.with(getApplicationContext()).load(url).into(image_view);
             }
 
             @Override
