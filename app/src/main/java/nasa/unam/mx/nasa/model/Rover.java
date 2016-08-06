@@ -1,6 +1,7 @@
 
 package nasa.unam.mx.nasa.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -8,7 +9,8 @@ import com.google.gson.annotations.SerializedName;
 
 import nasa.unam.mx.nasa.model.Camera_;
 
-public class Rover {
+public class Rover implements Serializable
+{
 
     @SerializedName("id")
     @Expose

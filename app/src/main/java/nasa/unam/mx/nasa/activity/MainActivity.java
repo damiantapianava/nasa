@@ -16,6 +16,5 @@ public class MainActivity extends MainActivityAMO
 
         init_flavor("MainActivity");
         init_today_apod();
-        init_mars_rover_photos();
     }
 }

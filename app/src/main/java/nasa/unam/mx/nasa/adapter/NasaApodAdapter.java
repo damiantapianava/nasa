@@ -11,13 +11,11 @@ import java.util.List;
 import nasa.unam.mx.nasa.R;
 import nasa.unam.mx.nasa.model.Photo;
 
-public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>
+public class NasaApodAdapter extends NasaApodAdapterDMO
 {
-    private List<Photo> photos;
-
-    public NasaApodAdapter(List<Photo> photos)
+    public NasaApodAdapter()
     {
-        this.photos = photos;
+        super();
     }
 
     @Override
@@ -38,6 +36,8 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>
         //Fresco: SimpleDraweeView
         holder.image_view.setImageURI(photo.getImgSrc());
         holder.txt_title.setText(photo.getCamera().getFullName());
+
+        holder.setItemClick(photo, onItemClickListener);
     }
 
     @Override

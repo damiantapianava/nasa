@@ -23,6 +23,5 @@ public class MainActivityFree extends MainActivityAMO
 
         init_flavor("MainActivityFree");
         init_today_apod();
-        init_mars_rover_photos();
     }
 }
