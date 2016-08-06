@@ -1,4 +1,4 @@
-package nasa.unam.mx.nasa;
+package nasa.unam.mx.nasa.data;
 
 import nasa.unam.mx.nasa.model.Apod;
 import nasa.unam.mx.nasa.model.MarsRoverResponse;

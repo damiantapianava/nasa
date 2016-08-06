@@ -1,5 +1,6 @@
-package nasa.unam.mx.nasa;
+package nasa.unam.mx.nasa.data;
 
+import nasa.unam.mx.nasa.BuildConfig;
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;

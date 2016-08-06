@@ -1,11 +1,11 @@
-package nasa.unam.mx.nasa;
+package nasa.unam.mx.nasa.activity;
 
-import android.support.v7.widget.RecyclerView;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 
 import butterknife.BindView;
+import nasa.unam.mx.nasa.R;
+import nasa.unam.mx.nasa.data.ApodServiceIMO;
 import nasa.unam.mx.nasa.model.Apod;
 import nasa.unam.mx.nasa.model.MarsRoverResponse;
 import retrofit2.Call;

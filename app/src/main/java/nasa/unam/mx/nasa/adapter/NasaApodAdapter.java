@@ -1,4 +1,4 @@
-package nasa.unam.mx.nasa;
+package nasa.unam.mx.nasa.adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -6,10 +6,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.List;
 
+import nasa.unam.mx.nasa.R;
 import nasa.unam.mx.nasa.model.Photo;
 
 public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>
@@ -34,8 +33,10 @@ public class NasaApodAdapter extends RecyclerView.Adapter<NasaApodViewHolder>
     {
         Photo photo = photos.get(position);
 
-        Picasso.with(holder.image_view.getContext()).load(photo.getImgSrc()).into((holder.image_view));
+        //Picasso.with(holder.image_view.getContext()).load(photo.getImgSrc()).into((holder.image_view));
 
+        //Fresco: SimpleDraweeView
+        holder.image_view.setImageURI(photo.getImgSrc());
         holder.txt_title.setText(photo.getCamera().getFullName());
     }
 

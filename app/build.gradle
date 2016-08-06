@@ -31,7 +31,7 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             //buildConfigField 'String', 'BUILD_TYPE', 'release'
             buildConfigField "String", "URL", "\"https://api.nasa.gov/\""
-            //signingConfig signingConfigs.release
+            signingConfig signingConfigs.release
         }
 
         debug {
@@ -72,4 +72,7 @@ dependencies {
     apt 'com.jakewharton:butterknife-compiler:8.2.1'
 
     compile 'com.android.support:recyclerview-v7:23.1.1'
+
+    compile 'com.facebook.fresco:fresco:0.12.0'
+    compile 'com.android.support:cardview-v7:23.1.1'
 }

@@ -1,25 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+
+<android.support.v7.widget.CardView
+    xmlns:tools   = "http://schemas.android.com/tools"
+    xmlns:android = "http://schemas.android.com/apk/res/android"
+    xmlns:fresco  = "http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="8dp">
 
-    <ImageView
+    <!-- android:scaleType="fitXY"-->
+    <com.facebook.drawee.view.SimpleDraweeView
         android:id="@+id/item_apod_image"
         android:src="@android:drawable/sym_def_app_icon"
         android:minWidth="56dp"
-        android:minHeight="56dp"
-        android:scaleType="fitXY"
+        android:minHeight="250dp"
+        fresco:actualImageScaleType="fitXY"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/item_apod_title"
-        android:layout_gravity="center_horizontal"
+        android:layout_gravity="bottom|center"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Title" />
-</LinearLayout>
+        android:textColor="@color/cardview_light_background"
+        android:textStyle="bold"
+        android:textSize="12dp"
+        tools:text="Title" />
+</android.support.v7.widget.CardView>
