@@ -1,46 +1,44 @@
 package nasa.unam.mx.nasa;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.squareup.picasso.Picasso;
 
+import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import nasa.unam.mx.nasa.model.Apod;
+import nasa.unam.mx.nasa.model.MarsRoverResponse;
+import nasa.unam.mx.nasa.model.Photo;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class MainActivityFree extends AppCompatActivity
+public class MainActivityFree extends MainActivityDMO
 {
-    private ImageView image_view;
-    private TextView txt_title;
-    private TextView txt_date;
-    private TextView txt_explanation;
-
-    private ApodServiceIMO service;
-    private Call<Apod> request;
-
-    private StringBuilder sb;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
 
-        image_view = (ImageView) findViewById(R.id.iv_app_ic);
-        txt_date = (TextView) findViewById(R.id.txt_date);
-        txt_title = (TextView) findViewById(R.id.txt_title);
-        txt_explanation = (TextView) findViewById(R.id.txt_explanation);
+/*
+        image_view = (ImageView) findViewById();
+        txt_date = (TextView) findViewById();
+        txt_title = (TextView) findViewById();
+        txt_explanation = (TextView) findViewById();
+*/
 
         sb = new StringBuilder();
         sb.append("FLAVOR: ").append(BuildConfig.FLAVOR).append(" ");
@@ -59,6 +57,7 @@ public class MainActivityFree extends AppCompatActivity
             @Override
             public void onResponse(Call<Apod> call, Response<Apod> response)
             {
+/*
                 txt_date.setText(response.body().getDate());
                 txt_title.setText(response.body().getTitle());
                 txt_explanation.setText(response.body().getExplanation());
@@ -66,10 +65,40 @@ public class MainActivityFree extends AppCompatActivity
                 String url = response.body().getUrl();
 
                 Picasso.with(getApplicationContext()).load(url).into(image_view);
+*/
             }
 
             @Override
             public void onFailure(Call<Apod> call, Throwable t) {
+
+            }
+        });
+
+        manager = new LinearLayoutManager(this);
+        //manager = new GridLayoutManager(this, 2);
+        recycler_view.setLayoutManager(manager);
+
+        request_mars_rover = service.getMarsRoverPhotos();
+
+        request_mars_rover.enqueue(new Callback<MarsRoverResponse>()
+        {
+            @Override
+            public void onResponse(Call<MarsRoverResponse> call, Response<MarsRoverResponse> response)
+            {
+                List<Photo> photos = response.body().getPhotos();
+
+                adapter = new NasaApodAdapter(photos);
+                recycler_view.setAdapter(adapter);
+
+                for(Photo photo : photos)
+                {
+                    Log.d("APOD", "photo.getImgSrc(): " + photo.getImgSrc());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<MarsRoverResponse> call, Throwable t)
+            {
 
             }
         });

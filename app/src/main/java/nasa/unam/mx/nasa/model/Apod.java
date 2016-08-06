@@ -1,4 +1,4 @@
-package nasa.unam.mx.nasa;
+package nasa.unam.mx.nasa.model;
 
 import com.google.gson.annotations.SerializedName;
 
