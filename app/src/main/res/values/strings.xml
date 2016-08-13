@@ -4,4 +4,6 @@
     <string name="mars_rover_item">Mars Rover Images</string>
     <string name="today_apod_item">Today APOD</string>
     <string name="favorite_item">Favorites</string>
+    <string name="facebook_app_id">1644678845859856</string>
+    <string name="fb_image_url"></string>
 </resources>

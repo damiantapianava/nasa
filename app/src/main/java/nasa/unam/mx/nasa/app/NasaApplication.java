@@ -2,6 +2,7 @@ package nasa.unam.mx.nasa.app;
 
 import android.app.Application;
 
+import com.facebook.FacebookSdk;
 import com.facebook.drawee.backends.pipeline.Fresco;
 
 public class NasaApplication extends Application
@@ -11,5 +12,6 @@ public class NasaApplication extends Application
     {
         super.onCreate();
         Fresco.initialize(this);
+        FacebookSdk.sdkInitialize(this);
     }
 }
