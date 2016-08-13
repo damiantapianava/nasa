@@ -1,6 +1,7 @@
 package nasa.unam.mx.nasa.activity;
 
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.Toolbar;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,4 +23,9 @@ public abstract class DetailActivityDMO extends AppCompatActivity
 
     @BindView(R.id.detail_txt_explanation)
     protected TextView txt_explanation;
+
+/*
+    @BindView(R.id.toolbar)
+    protected Toolbar toolbar;
+*/
 }

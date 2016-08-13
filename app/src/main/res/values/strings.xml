@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">nasa</string>
     <string name="action_settings">Settings</string>
+    <string name="mars_rover_item">Mars Rover Images</string>
+    <string name="today_apod_item">Today APOD</string>
+    <string name="favorite_item">Favorites</string>
 </resources>

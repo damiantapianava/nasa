@@ -6,6 +6,7 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 
 import nasa.unam.mx.nasa.BuildConfig;
+import nasa.unam.mx.nasa.R;
 import nasa.unam.mx.nasa.data.ApodServiceIMO;
 import nasa.unam.mx.nasa.data.Data;
 import nasa.unam.mx.nasa.model.Apod;

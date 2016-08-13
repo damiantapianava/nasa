@@ -1,6 +1,7 @@
-package nasa.unam.mx.nasa.activity;
+package nasa.unam.mx.nasa.fragment;
 
-import android.support.v7.app.AppCompatActivity;
+import android.app.Fragment;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -10,7 +11,7 @@ import nasa.unam.mx.nasa.data.ApodServiceIMO;
 import nasa.unam.mx.nasa.model.Apod;
 import retrofit2.Call;
 
-public abstract class MainActivityDMO extends AppCompatActivity
+public class ApodTodayFragmentDMO extends Fragment
 {
     @BindView(R.id.iv_app_ic)
     protected ImageView image_view;
@@ -28,5 +29,5 @@ public abstract class MainActivityDMO extends AppCompatActivity
 
     protected Call<Apod> request;
 
-    protected StringBuilder sb;
+    protected View view;
 }
