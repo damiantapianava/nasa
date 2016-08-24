@@ -1,18 +1,14 @@
 package nasa.unam.mx.nasa.activity;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.TextView;
-
-import com.facebook.AccessToken;
-import com.facebook.GraphRequest;
-import com.facebook.GraphResponse;
-import com.facebook.drawee.view.SimpleDraweeView;
-
-import org.json.JSONObject;
+import android.support.design.widget.Snackbar;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import butterknife.ButterKnife;
 import nasa.unam.mx.nasa.R;
+import nasa.unam.mx.nasa.app.ApodPreference;
+import nasa.unam.mx.nasa.data.ApodFavoriteDAO;
 
 public class DrawerActivity extends DrawerActivityAMO
 {
@@ -26,28 +22,57 @@ public class DrawerActivity extends DrawerActivityAMO
         setSupportActionBar(toolbar);
 
         init_navigation_view();
+        init_graph_request();
+    }
 
-        GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback()
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu)
+    {
+        getMenuInflater().inflate(R.menu.menu_add_favorites, menu);
+
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item)
+    {
+        switch (item.getItemId())
         {
-            @Override
-            public void onCompleted(JSONObject object, GraphResponse response)
-            {
-                try
+            case R.id.menu_add_favorites:
+
+                if(add_favorites_ENABLED)
                 {
-                    SimpleDraweeView userImage = (SimpleDraweeView) findViewById(R.id.img_user_fb);
-                    TextView user_name = (TextView) findViewById(R.id.txt_user_name);
+                    add_to_favorites();
 
-                    userImage.setImageURI("http://graph.facebook.com/" + object.getString("id") + "/picture?type=large");
+                } else {
 
-                    user_name.setText(object.getString("name"));
-
-                } catch (Exception e)
-                {
-                    e.printStackTrace();
+                    Snackbar.make(findViewById(android.R.id.content), "Select an image", Snackbar.LENGTH_LONG).show();
                 }
-            }
-        });
 
-        request.executeAsync();
+
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void add_to_favorites()
+    {
+        preference = new ApodPreference(getApplicationContext());
+
+        favorite = preference.getApodFavorite();
+
+        if(favorite != null)
+        {
+            dao = new ApodFavoriteDAO(getApplicationContext());
+
+            boolean persist_OK = dao.persist(favorite);
+
+            if(persist_OK)
+            {
+                Snackbar.make(findViewById(android.R.id.content), favorite.getImgSrc() + " added", Snackbar.LENGTH_LONG).show();
+            }
+        }
     }
 }

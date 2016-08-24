@@ -7,8 +7,10 @@ import android.widget.TextView;
 
 import butterknife.BindView;
 import nasa.unam.mx.nasa.R;
+import nasa.unam.mx.nasa.app.ApodPreference;
 import nasa.unam.mx.nasa.data.ApodServiceIMO;
 import nasa.unam.mx.nasa.model.Apod;
+import nasa.unam.mx.nasa.model.ApodFavorite;
 import retrofit2.Call;
 
 public class ApodTodayFragmentDMO extends Fragment
@@ -30,4 +32,7 @@ public class ApodTodayFragmentDMO extends Fragment
     protected Call<Apod> request;
 
     protected View view;
+
+    protected ApodFavorite favorite;
+    protected ApodPreference preference;
 }

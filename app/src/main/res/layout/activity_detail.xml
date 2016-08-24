@@ -2,7 +2,6 @@
 
 <ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fresco  = "http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -10,42 +9,13 @@
     tools:context=".activity.DetailActivity">
 
     <LinearLayout
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="0dp"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <com.facebook.drawee.view.SimpleDraweeView
-            android:id="@+id/detail_image_view"
-            android:src="@android:drawable/sym_def_app_icon"
-            android:layout_margin="10dp"
-            android:minWidth="56dp"
-            android:minHeight="200dp"
-            fresco:actualImageScaleType="fitXY"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <include layout="@layout/toolbar"/>
+        <include layout="@layout/favorite_adapter"/>
 
-        <TextView
-            android:id="@+id/detail_date_txt"
-            android:layout_gravity="right"
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="date" />
-
-        <TextView
-            android:id="@+id/detail_txt_title"
-            android:layout_margin="10dp"
-            android:layout_gravity="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="title" />
-
-        <TextView
-            android:id="@+id/detail_txt_explanation"
-            android:layout_margin="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="explanation" />
     </LinearLayout>
 </ScrollView>

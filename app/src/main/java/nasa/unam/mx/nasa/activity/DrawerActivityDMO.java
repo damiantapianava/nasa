@@ -8,7 +8,10 @@ import android.support.v7.widget.Toolbar;
 
 import butterknife.BindView;
 import nasa.unam.mx.nasa.R;
+import nasa.unam.mx.nasa.app.ApodPreference;
+import nasa.unam.mx.nasa.data.ApodFavoriteDAO;
 import nasa.unam.mx.nasa.fragment.ApodTodayFragment;
+import nasa.unam.mx.nasa.model.ApodFavorite;
 
 public abstract class DrawerActivityDMO extends AppCompatActivity
 {
@@ -24,4 +27,11 @@ public abstract class DrawerActivityDMO extends AppCompatActivity
     protected ApodTodayFragment apodTodayFragment;
 
     protected FragmentManager manager;
+
+    protected ApodFavoriteDAO dao;
+
+    protected ApodFavorite favorite;
+    protected ApodPreference preference;
+
+    protected boolean add_favorites_ENABLED;
 }
