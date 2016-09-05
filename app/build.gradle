@@ -9,12 +9,12 @@ android {
         applicationId "nasa.unam.mx.nasa"
         minSdkVersion 19
         targetSdkVersion 23
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.1"
     }
 
     signingConfigs {
-        debug.initWith(signingConfigs.debug)
+        //debug.initWith(signingConfigs.debug)
         release {
 /*
             storeFile("release.keystore")
@@ -22,6 +22,10 @@ android {
             keyAlias "key-alias-para-google-play"
             keyPassword "key-password-para-google-play"
 */
+            keyAlias 'NasaApod'
+            keyPassword 'N4sn44p0d'
+            storeFile file('/home/damian/keystores/android.jks')
+            storePassword 'estaesmis2651988'
         }
     }
 
@@ -33,11 +37,11 @@ android {
             buildConfigField "String", "URL", "\"https://api.nasa.gov/\""
             signingConfig signingConfigs.release
         }
-
         debug {
             minifyEnabled true
 //            buildConfigField 'String', 'BUILD_TYPE', 'debug'
             buildConfigField "String", "URL", "\"https://api.nasa.gov/\""
+            signingConfig signingConfigs.release
         }
     }
 
@@ -58,25 +62,20 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile 'com.android.support:appcompat-v7:23.4.0'
     compile 'com.android.support:design:23.4.0'
-/*
-    compile project (":a-nivel-de-app-library")
-    freeCompile 'otra-libreria-solo-para-flavor-free'
-    paidCompile 'otra-libreria-solo-para-flavor-paid'
-*/
+    /*
+            compile project (":a-nivel-de-app-library")
+            freeCompile 'otra-libreria-solo-para-flavor-free'
+            paidCompile 'otra-libreria-solo-para-flavor-paid'
+        */
     compile 'com.squareup.retrofit2:retrofit:2.1.0'
     compile 'com.squareup.retrofit2:converter-gson:2.0.2'
     compile 'com.squareup.okhttp3:logging-interceptor:3.3.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
-
     compile 'com.jakewharton:butterknife:8.2.1'
     apt 'com.jakewharton:butterknife-compiler:8.2.1'
-
     compile 'com.android.support:recyclerview-v7:23.1.1'
-
     compile 'com.facebook.fresco:fresco:0.12.0'
     compile 'com.android.support:cardview-v7:23.1.1'
-
     compile 'com.android.support:design:23.1.1'
-
     compile 'com.facebook.android:facebook-android-sdk:4.14.1'
 }

@@ -9,6 +9,7 @@ import butterknife.ButterKnife;
 import nasa.unam.mx.nasa.R;
 import nasa.unam.mx.nasa.app.ApodPreference;
 import nasa.unam.mx.nasa.data.ApodFavoriteDAO;
+import nasa.unam.mx.nasa.fragment.MarsRoverPhotosFragment;
 
 public class DrawerActivity extends DrawerActivityAMO
 {
@@ -23,6 +24,12 @@ public class DrawerActivity extends DrawerActivityAMO
 
         init_navigation_view();
         init_graph_request();
+
+        manager = getFragmentManager();
+
+        manager.beginTransaction().replace(R.id.holder_fragment, new MarsRoverPhotosFragment()).commit();
+
+        add_favorites_ENABLED = false;
     }
 
 

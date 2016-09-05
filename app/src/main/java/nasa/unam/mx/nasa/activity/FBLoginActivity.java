@@ -81,7 +81,7 @@ public class FBLoginActivity extends AppCompatActivity implements FacebookCallba
     {
         //Snackbar.make(findViewById(android.R.id.content), "Success", Snackbar.LENGTH_SHORT).show();
 
-        startActivity(new Intent(this, ListingActivity.class));
+        startActivity(new Intent(this, DrawerActivity.class));
     }
 
     @Override
